@@ -1,1 +1,51 @@
 @import "tailwindcss";
+@import "tailwindcss/preflight.css" layer(base);
+
+@layer base {
+  :root {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+      Helvetica Neue, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+@theme {
+  --color-primary-bg: #f3f4f6;
+  --color-primary-dark: #4338ca;
+  --color-primary-light: #4f46e5;
+  --color-secondary-100: #0f7ce9;
+  --color-secondary-200: #e0e7ff;
+  --color-secondary-300: #d1d5db;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b;
+  --color-secondary-600: #374151;
+}
+
+body {
+  min-height: 100vh;
+  padding: 1rem;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  border: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
