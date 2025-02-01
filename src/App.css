@@ -7,7 +7,30 @@
       Helvetica Neue, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
+
+  body {
+    min-height: 100vh;
+    padding: 1rem;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
+
 @theme {
   --color-primary-bg: #f3f4f6;
   --color-primary-dark: #4338ca;
@@ -20,32 +43,7 @@
   --color-secondary-600: #374151;
 }
 
-body {
-  min-height: 100vh;
-  padding: 1rem;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  outline: none;
-  border: none;
-}
-
-button {
-  outline: none;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-button:disabled {
-  cursor: not-allowed;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
 }
