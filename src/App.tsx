@@ -1,9 +1,10 @@
 import "./App.css";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="text-center mt-4 text-2xl font-semibold">
-      hotel booking App (TS + TailwindCSS)
+    <div className="container max-w-7xl ">
+      <Header />
     </div>
   );
 }
