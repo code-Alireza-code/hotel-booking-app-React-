@@ -2,6 +2,10 @@ import { useState } from "react";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
 import { MdLocationPin } from "react-icons/md";
 import useOutsideClick from "../hooks/useOutsideClick";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { DateRange } from "react-date-range";
+import { format } from "date-fns";
 
 type OptionsType = {
   adult: number;
@@ -39,6 +43,12 @@ function Header() {
     children: 0,
     room: 1,
   });
+  const [date, setDate] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "travelDate",
+  });
+  const [openDate, setOpenDate] = useState(false);
 
   const handleOptions: handleOptionsType = (name, operation) => {
     switch (operation) {
@@ -56,6 +66,7 @@ function Header() {
         throw new Error("unknown case !");
     }
   };
+  const ref = useOutsideClick(() => setOpenDate(false), "datePicker");
 
   return (
     <div className="flex justify-center items-center gap-4">
@@ -75,7 +86,33 @@ function Header() {
         </div>
         <div className="flex items-center relative">
           <HiCalendar className="w-6 h-6 inline-block text-primary-dark" />
-          <div className="ml-2 text-sm">2025/2/10</div>
+          <div
+            className="ml-2 text-sm cursor-pointer"
+            data-id="datePicker"
+            onClick={() => setOpenDate(true)}
+          >
+            {`${format(date.startDate, "MM/dd/yyyy")} to ${format(
+              date.endDate,
+              "MM/dd/yyyy"
+            )}`}
+          </div>
+          {openDate && (
+            <div ref={ref as React.RefObject<HTMLDivElement>}>
+              <DateRange
+                className="absolute z-20 top-10 right-5"
+                ranges={[date]}
+                onChange={(item) =>
+                  setDate({
+                    startDate: item.travelDate.startDate || new Date(),
+                    endDate: item.travelDate.endDate || new Date(),
+                    key: "travelDate",
+                  })
+                }
+                minDate={new Date()}
+                moveRangeOnFirstSelection={false}
+              />
+            </div>
+          )}
           <span className="separator" />
         </div>
         <div className="flex items-center relative">
@@ -132,24 +169,6 @@ function GuestOptionList({
           minLimit={item.minLimit}
         />
       ))}
-      {/* <GuestOptionItem
-        type="adult"
-        minLimit={1}
-        options={options}
-        handleOptions={handleOptions}
-      />
-      <GuestOptionItem
-        type="children"
-        minLimit={0}
-        options={options}
-        handleOptions={handleOptions}
-      />
-      <GuestOptionItem
-        type="room"
-        minLimit={1}
-        options={options}
-        handleOptions={handleOptions}
-      /> */}
     </div>
   );
 }
