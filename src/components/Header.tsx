@@ -41,7 +41,10 @@ const optionItemData = [
 ];
 
 function Header() {
-  const [destination, setDestination] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [destination, setDestination] = useState(
+    searchParams.get("destination") || ""
+  );
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState<OptionsType>({
     adult: 1,
@@ -74,7 +77,6 @@ function Header() {
   const ref = useOutsideClick(() => setOpenDate(false), "datePicker");
 
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSearch = () => {
     const encodedParams = createSearchParams({
