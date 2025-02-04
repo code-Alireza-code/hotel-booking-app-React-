@@ -16,7 +16,7 @@ function Hotels() {
       {hotels.map((hotel) => (
         <Link
           key={hotel.id}
-          to={`/hotels/${hotel.id}?lat=${hotel.latitude}}&lng:${hotel.longitude}`}
+          to={`/hotels/${hotel.id}?lat=${hotel.latitude}&lng=${hotel.longitude}`}
         >
           <div className=" flex gap-4 items-stretch">
             <img
