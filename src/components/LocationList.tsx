@@ -1,15 +1,10 @@
 import useFetch from "../hooks/useFetch";
-
-interface Hotel {
-  id: number;
-  name: string;
-  smart_location: string;
-  price: number;
-  xl_picture_url: string;
-}
+import { HotelDataType } from "../types/hotelsData";
 
 function LocationList() {
-  const { data, isLoading } = useFetch<Hotel>("http://localhost:5000/hotels");
+  const { data, isLoading } = useFetch<HotelDataType>(
+    "http://localhost:5000/hotels"
+  );
 
   if (isLoading) return <p className="mt-4">loading location data ....</p>;
   return (
