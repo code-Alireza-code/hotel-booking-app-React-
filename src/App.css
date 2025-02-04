@@ -1,3 +1,4 @@
+@import "../node_modules/leaflet/dist/leaflet.css";
 @import "tailwindcss";
 @import "tailwindcss/preflight.css" layer(base);
 

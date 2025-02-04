@@ -28,7 +28,6 @@ function HotelProvider({ children }: { children: ReactNode }) {
 
 export default HotelProvider;
 
-
 export function useHotels() {
   const context = useContext(HotelContext);
   if (context === undefined) {
