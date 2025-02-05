@@ -8,4 +8,5 @@ export type HotelDataType = {
   price: number;
   xl_picture_url: string;
   host_location: string;
+  number_of_reviews: number;
 };

@@ -2,7 +2,7 @@ import useFetch from "../hooks/useFetch";
 import { HotelDataType } from "../types/hotelsData";
 
 function LocationList() {
-  const { data, isLoading } = useFetch<HotelDataType>(
+  const { data, isLoading } = useFetch<HotelDataType[]>(
     "http://localhost:5000/hotels"
   );
 
