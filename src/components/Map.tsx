@@ -1,12 +1,23 @@
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import { useHotels } from "../context/HotelProvider";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvent,
+} from "react-leaflet";
 import { useEffect, useState } from "react";
-import { LatLngExpression } from "leaflet";
-import { useSearchParams } from "react-router-dom";
+import { LatLngExpression, LeafletMouseEvent } from "leaflet";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import useGeoLocation from "../hooks/useGeoLocation";
+import { HotelDataType } from "../types/hotelsData";
+import { BookmarkDataType } from "../types/bookmarkData";
 
-function Map() {
-  const { hotels } = useHotels();
+type MapPropsType = {
+  markerLocations: HotelDataType[] | BookmarkDataType[];
+};
+
+function Map({ markerLocations }: MapPropsType) {
   const [mapCenter, setMapCenter] = useState<LatLngExpression>([51, 1]);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -47,10 +58,14 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <DetectClick />
         <ChangeCenter position={mapCenter} />
-        {hotels.map((hotel) => (
-          <Marker position={[hotel.latitude, hotel.longitude]} key={hotel.id}>
-            <Popup>{hotel.host_location}</Popup>
+        {markerLocations.map((location) => (
+          <Marker
+            position={[+location.latitude, +location.longitude]}
+            key={location.id}
+          >
+            <Popup>{location.host_location}</Popup>
           </Marker>
         ))}
       </MapContainer>
@@ -63,5 +78,13 @@ export default Map;
 function ChangeCenter({ position }: { position: LatLngExpression }) {
   const map = useMap();
   map.setView(position);
+  return null;
+}
+
+function DetectClick() {
+  const navigate = useNavigate();
+  useMapEvent("click", (e: LeafletMouseEvent) => {
+    navigate(`/bookmark/add?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+  });
   return null;
 }

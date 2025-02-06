@@ -11,7 +11,7 @@ type ContextType = {
   hotels: HotelDataType[];
   isLoading: boolean;
   isLoadingCurrentHotel: boolean;
-  getSingleHotel: (id: string | number) => void;
+  getSingleHotel: (id: string | number) => Promise<void>;
   currentHotel: HotelDataType | null;
 };
 
