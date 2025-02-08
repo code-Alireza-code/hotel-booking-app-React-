@@ -2,9 +2,20 @@ import ReactCountryFlag from "react-country-flag";
 import { useBookmarks } from "../context/BookmarkProvider";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
+import { FaTrashAlt } from "react-icons/fa";
+import React from "react";
 
 function Bookmarks() {
-  const { isLoading, bookmarks, currentBookmark } = useBookmarks();
+  const { isLoading, bookmarks, currentBookmark, removeBookmark } =
+    useBookmarks();
+
+  const handleDelete = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number
+  ) => {
+    e.preventDefault();
+    await removeBookmark(id);
+  };
 
   if (isLoading) return <Loader />;
   return (
@@ -28,6 +39,15 @@ function Bookmarks() {
                 ? `${bookmark.country.slice(0, 14)}...`
                 : bookmark.country}
             </span>
+            <button
+              className="bg-red-50 ml-4 p-2 rounded-full"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(e, bookmark.id);
+              }}
+            >
+              <FaTrashAlt className="text-rose-500" />
+            </button>
           </div>
         </Link>
       ))}

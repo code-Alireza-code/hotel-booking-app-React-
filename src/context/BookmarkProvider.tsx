@@ -5,7 +5,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import useFetch from "../hooks/useFetch";
 import { BookmarkDataType } from "../types/bookmarkData";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -19,6 +18,7 @@ type BookmarkContextType = {
   isLoadingCurrentBookmark: boolean;
   currentBookmark: BookmarkDataType | null;
   createNewBookmark: (data: newBookmarkType) => Promise<void>;
+  removeBookmark: (id: number) => Promise<void>;
 };
 
 type newBookmarkType = {
@@ -94,6 +94,24 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function removeBookmark(id: number) {
+    setIsLoading(true);
+    try {
+      await axios.delete(`${BASE_URL}/${id}`);
+      setCurrentBookmark(null);
+      setBookmarks((prev) => prev.filter((bookmark) => bookmark.id !== id));
+      toast.success("bookmark removed !");
+    } catch (error) {
+      const err =
+        error instanceof Error
+          ? error.message
+          : "error while removing bookmark !";
+      toast.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <BookmarkContext.Provider
       value={{
@@ -103,6 +121,7 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
         isLoadingCurrentBookmark,
         currentBookmark,
         createNewBookmark,
+        removeBookmark,
       }}
     >
       {children}

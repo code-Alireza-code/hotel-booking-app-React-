@@ -1325,139 +1325,76 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Abalessa",
-      "country": "Algeria",
-      "countryCode": "DZ",
-      "latitude": "23.18455079512732",
-      "longitude": "3.795523257510883",
-      "host_location": "Abalessa Algeria",
-      "id": 1
-    },
-    {
-      "cityName": "Mahidasht",
-      "country": "Iran",
+      "cityName": "Kermanshah",
+      "country": "Iran (Islamic Republic of)",
       "countryCode": "IR",
-      "latitude": "34.32869425037187",
-      "longitude": "46.724183117022086",
-      "host_location": "Mahidasht Iran",
-      "id": 4
+      "latitude": "34.3366324743773",
+      "longitude": "46.94575212774616",
+      "id": 1739007178302,
+      "host_location": "Kermanshah Iran (Islamic Republic of)"
     },
     {
-      "cityName": "Sanandaj",
-      "country": "Iran",
+      "cityName": "Tehran",
+      "country": "Iran (Islamic Republic of)",
       "countryCode": "IR",
-      "latitude": "35.31372444726279",
-      "longitude": "47.03114358752335",
-      "host_location": "Sanandaj Iran",
-      "id": 5
+      "latitude": "35.70414710206052",
+      "longitude": "51.394302053403095",
+      "id": 1739007197420,
+      "host_location": "Tehran Iran (Islamic Republic of)"
     },
     {
-      "cityName": "A Dakhla Oasis",
-      "country": "Egypt",
-      "countryCode": "EG",
-      "latitude": "25.02090651422749",
-      "longitude": "29.09059588509316",
-      "host_location": "A Dakhla Oasis Egypt",
-      "id": 7
-    },
-    {
-      "cityName": "Baba Kot",
-      "country": "Pakistan",
-      "countryCode": "PK",
-      "latitude": "28.43528783183169",
-      "longitude": "67.78003711374224",
-      "host_location": "Baba Kot Pakistan",
-      "id": 8
-    },
-    {
-      "longitude": 2.399194495374215,
-      "cityName": "Paris",
-      "country": "France",
-      "countryCode": "FR",
-      "latitude": 48.87194147722911,
-      "id": 1739002544005,
-      "host_location": "Paris France"
+      "cityName": "Munich",
+      "country": "Germany",
+      "countryCode": "DE",
+      "latitude": "48.08908799881762",
+      "longitude": "11.603763485814886",
+      "id": 1739007234029,
+      "host_location": "Munich Germany"
     },
     {
       "cityName": "Paris",
       "country": "France",
       "countryCode": "FR",
-      "latitude": "48.87194147722911",
-      "longitude": "2.399194495374215",
-      "id": 1739002704975,
+      "latitude": "48.832181625698475",
+      "longitude": "2.3852126551648345",
+      "id": 1739036806006,
       "host_location": "Paris France"
     },
     {
-      "cityName": "Valdemoro",
+      "cityName": "Cardiff",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "countryCode": "GB",
+      "latitude": "51.474540439419755",
+      "longitude": "-3.2233281618475877",
+      "id": 1739036811061,
+      "host_location": "Cardiff United Kingdom of Great Britain and Northern Ireland (the)"
+    },
+    {
+      "cityName": "Liverpool",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "countryCode": "GB",
+      "latitude": "53.39479437775073",
+      "longitude": "-3.036518067266712",
+      "id": 1739036821592,
+      "host_location": "Liverpool United Kingdom of Great Britain and Northern Ireland (the)"
+    },
+    {
+      "cityName": "Rome",
+      "country": "Italy",
+      "countryCode": "IT",
+      "latitude": "41.85319643776675",
+      "longitude": "12.528835773912858",
+      "id": 1739036848307,
+      "host_location": "Rome Italy"
+    },
+    {
+      "cityName": "Madrid",
       "country": "Spain",
       "countryCode": "ES",
-      "latitude": "40.212440718286466",
-      "longitude": "-3.6672842350601313",
-      "id": 1739002740864,
-      "host_location": "Valdemoro Spain"
-    },
-    {
-      "cityName": "Alcanede",
-      "country": "Portugal",
-      "countryCode": "PT",
-      "latitude": "39.402244340292775",
-      "longitude": "-8.76892792124495",
-      "id": 1739002762802,
-      "host_location": "Alcanede Portugal"
-    },
-    {
-      "cityName": "Grong",
-      "country": "Norway",
-      "countryCode": "NO",
-      "latitude": "64.4348920430406",
-      "longitude": "12.15962135249302",
-      "id": 1739002775380,
-      "host_location": "Grong Norway"
-    },
-    {
-      "cityName": "Du Lainah",
-      "country": "Afghanistan",
-      "countryCode": "AF",
-      "latitude": "33.99802726234877",
-      "longitude": "65.4869247725977",
-      "id": 1739003365033,
-      "host_location": "Du Lainah Afghanistan"
-    },
-    {
-      "cityName": "Stratton",
-      "country": "United States of America (the)",
-      "countryCode": "US",
-      "latitude": "39.30029918615029",
-      "longitude": "-102.74967687493522",
-      "id": 1739003464300,
-      "host_location": "Stratton United States of America (the)"
-    },
-    {
-      "cityName": "South Slave Region",
-      "country": "Canada",
-      "countryCode": "CA",
-      "latitude": "61.98026726504404",
-      "longitude": "-102.43048761920807",
-      "id": 1739003474800,
-      "host_location": "South Slave Region Canada"
-    },
-    {
-      "cityName": "Bayinguoleng Menggu Zizhizhou",
-      "country": "China",
-      "countryCode": "CN",
-      "latitude": "36.527294814546245",
-      "longitude": "90.91246388125845",
-      "id": 1739005778713,
-      "host_location": "Bayinguoleng Menggu Zizhizhou China"
-    },
-    {
-      "cityName": "Satbaev",
-      "country": "Kazakhstan",
-      "countryCode": "KZ",
-      "latitude": "48.04870994288686",
-      "longitude": "67.52818841025707",
-      "id": 1739005795236,
-      "host_location": "Satbaev Kazakhstan"
+      "latitude": "40.49709237269567",
+      "longitude": "-3.7630510335143073",
+      "id": 1739036850459,
+      "host_location": "Madrid Spain"
     }
   ]
 }
