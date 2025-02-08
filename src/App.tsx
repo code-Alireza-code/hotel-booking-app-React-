@@ -7,6 +7,8 @@ import AppLayout from "./components/AppLayout";
 import Hotels from "./components/Hotels";
 import SingleHotel from "./components/SingleHotel";
 import Bookmark from "./components/BookmarkLayout";
+import Bookmarks from "./components/Bookmarks";
+import SingleBookmark from "./components/SingleBookmark";
 
 function App() {
   return (
@@ -20,8 +22,9 @@ function App() {
           <Route path=":id" element={<SingleHotel />} />
         </Route>
         <Route path="/bookmark" element={<Bookmark />}>
-          <Route index element={<div>bookmark list</div>} />
+          <Route index element={<Bookmarks />} />
           <Route path="add" element={<div>add bookmark</div>} />
+          <Route path=":id" element={<SingleBookmark />} />
         </Route>
       </Routes>
     </div>

@@ -1,6 +1,4 @@
 import { useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
-import { HotelDataType } from "../types/hotelsData";
 import Loader from "./Loader";
 import { useHotels } from "../context/HotelProvider";
 import { useEffect } from "react";

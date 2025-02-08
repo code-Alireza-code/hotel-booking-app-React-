@@ -11,6 +11,7 @@ type BookmarkContextType = {
   getSingleBookmark: (id: string | number) => Promise<void>;
   isLoading: boolean;
   isLoadingCurrentBookmark: boolean;
+  currentBookmark: BookmarkDataType | null;
 };
 
 const BookmarkContext = createContext<BookmarkContextType | undefined>(
@@ -26,6 +27,7 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
   const { data: bookmarks, isLoading } = useFetch<BookmarkDataType[]>(BASE_URL);
 
   async function getSingleBookmark(id: string | number) {
+    setCurrentBookmark(null);
     setIsLoadingCurrentBookmark(true);
     try {
       const { data } = await axios.get(`${BASE_URL}/${id}`);
@@ -47,6 +49,7 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
         getSingleBookmark,
         isLoading,
         isLoadingCurrentBookmark,
+        currentBookmark,
       }}
     >
       {children}
