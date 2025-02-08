@@ -3,7 +3,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useState,
+  useReducer,
 } from "react";
 import { BookmarkDataType } from "../types/bookmarkData";
 import axios from "axios";
@@ -34,53 +34,114 @@ const BookmarkContext = createContext<BookmarkContextType | undefined>(
   undefined
 );
 
-function BookmarkProvider({ children }: { children: ReactNode }) {
-  const [currentBookmark, setCurrentBookmark] =
-    useState<null | BookmarkDataType>(null);
-  const [bookmarks, setBookmarks] = useState<BookmarkDataType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+type InitialStateType = {
+  bookmarks: [] | BookmarkDataType[];
+  isLoading: boolean;
+  currentBookmark: null | BookmarkDataType;
+  error: null | Error | string;
+};
 
+const initialState: InitialStateType = {
+  bookmarks: [],
+  isLoading: false,
+  currentBookmark: null,
+  error: null,
+};
+
+type ActionType =
+  | { type: "loading"; payload?: never }
+  | { type: "bookmarks/loaded"; payload: BookmarkDataType[] }
+  | { type: "bookmark/loaded"; payload: BookmarkDataType }
+  | { type: "bookmark/created"; payload: BookmarkDataType }
+  | { type: "bookmark/deleted"; payload: number }
+  | { type: "rejected"; payload: string | Error };
+
+function bookmarkReducer(state: InitialStateType, action: ActionType) {
+  const { type, payload } = action;
+  switch (type) {
+    case "loading":
+      return {
+        ...state,
+        isLoading: true,
+        error: null,
+      };
+    case "bookmarks/loaded":
+      return {
+        ...state,
+        bookmarks: payload,
+        isLoading: false,
+      };
+    case "bookmark/created":
+      return {
+        ...state,
+        isLoading: false,
+        currentBookmark: payload,
+        bookmarks: [...state.bookmarks, payload],
+      };
+    case "bookmark/loaded":
+      return { ...state, isLoading: false, currentBookmark: payload };
+    case "bookmark/deleted":
+      return {
+        ...state,
+        isLoading: false,
+        currentBookmark: null,
+        bookmarks: state.bookmarks.filter(
+          (bookmark) => bookmark.id !== payload
+        ),
+      };
+    case "rejected":
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+      };
+  }
+}
+
+function BookmarkProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     async function getAllBookmarks() {
-      setIsLoading(true);
+      dispatch({ type: "loading" });
       try {
         const { data } = await axios.get(BASE_URL);
-        setBookmarks(data);
+        dispatch({ type: "bookmarks/loaded", payload: data });
       } catch (error) {
         const err =
           error instanceof Error
             ? error.message
             : "error while fetching bookmarks !";
         toast.error(err);
-      } finally {
-        setIsLoading(false);
+        dispatch({ type: "rejected", payload: err });
       }
     }
     getAllBookmarks();
   }, []);
 
+  const [{ bookmarks, isLoading, currentBookmark }, dispatch] = useReducer(
+    bookmarkReducer,
+    initialState
+  );
+
   async function getSingleBookmark(id: string | number) {
-    setCurrentBookmark(null);
-    setIsLoading(true);
+    if (Number(id) === currentBookmark?.id) return;
+    dispatch({ type: "loading" });
     try {
       const { data } = await axios.get(`${BASE_URL}/${id}`);
-      setCurrentBookmark(data);
+      dispatch({ type: "bookmark/loaded", payload: data });
     } catch (error) {
       const err =
         error instanceof Error
           ? error.message
           : "error while fetching bookmark data !";
       toast.error(err);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: "rejected", payload: err });
     }
   }
 
   async function createNewBookmark(data: newBookmarkType) {
     try {
       await axios.post(BASE_URL, data);
-      setCurrentBookmark(data);
-      setBookmarks((prev) => [...prev, data]);
+      dispatch({ type: "bookmark/created", payload: data });
       toast.success("bookmark added !");
     } catch (error) {
       const err =
@@ -88,15 +149,15 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
           ? error.message
           : "error while adding new bookmark !";
       toast.error(err);
+      dispatch({ type: "rejected", payload: err });
     }
   }
 
   async function removeBookmark(id: number) {
-    setIsLoading(true);
+    dispatch({ type: "loading" });
     try {
       await axios.delete(`${BASE_URL}/${id}`);
-      setCurrentBookmark(null);
-      setBookmarks((prev) => prev.filter((bookmark) => bookmark.id !== id));
+      dispatch({ type: "bookmark/deleted", payload: id });
       toast.success("bookmark removed !");
     } catch (error) {
       const err =
@@ -104,8 +165,7 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
           ? error.message
           : "error while removing bookmark !";
       toast.error(err);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: "rejected", payload: err });
     }
   }
 
