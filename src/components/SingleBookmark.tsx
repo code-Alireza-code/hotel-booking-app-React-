@@ -7,15 +7,14 @@ import { MdArrowBack } from "react-icons/md";
 
 function SingleBookmark() {
   const { id } = useParams();
-  const { currentBookmark, getSingleBookmark, isLoadingCurrentBookmark } =
-    useBookmarks();
+  const { currentBookmark, getSingleBookmark, isLoading } = useBookmarks();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (id) getSingleBookmark(id);
   }, [id]);
 
-  if (isLoadingCurrentBookmark || !currentBookmark) return <Loader />;
+  if (isLoading || !currentBookmark) return <Loader />;
 
   return (
     <div>

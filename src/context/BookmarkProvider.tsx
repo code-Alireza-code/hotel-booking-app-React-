@@ -15,7 +15,6 @@ type BookmarkContextType = {
   bookmarks: BookmarkDataType[];
   getSingleBookmark: (id: string | number) => Promise<void>;
   isLoading: boolean;
-  isLoadingCurrentBookmark: boolean;
   currentBookmark: BookmarkDataType | null;
   createNewBookmark: (data: newBookmarkType) => Promise<void>;
   removeBookmark: (id: number) => Promise<void>;
@@ -38,8 +37,6 @@ const BookmarkContext = createContext<BookmarkContextType | undefined>(
 function BookmarkProvider({ children }: { children: ReactNode }) {
   const [currentBookmark, setCurrentBookmark] =
     useState<null | BookmarkDataType>(null);
-  const [isLoadingCurrentBookmark, setIsLoadingCurrentBookmark] =
-    useState(false);
   const [bookmarks, setBookmarks] = useState<BookmarkDataType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -64,7 +61,7 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
 
   async function getSingleBookmark(id: string | number) {
     setCurrentBookmark(null);
-    setIsLoadingCurrentBookmark(true);
+    setIsLoading(true);
     try {
       const { data } = await axios.get(`${BASE_URL}/${id}`);
       setCurrentBookmark(data);
@@ -75,7 +72,7 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
           : "error while fetching bookmark data !";
       toast.error(err);
     } finally {
-      setIsLoadingCurrentBookmark(false);
+      setIsLoading(false);
     }
   }
 
@@ -118,7 +115,6 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
         bookmarks,
         getSingleBookmark,
         isLoading,
-        isLoadingCurrentBookmark,
         currentBookmark,
         createNewBookmark,
         removeBookmark,
