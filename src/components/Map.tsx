@@ -8,10 +8,11 @@ import {
 } from "react-leaflet";
 import { useEffect, useState } from "react";
 import { LatLngExpression, LeafletMouseEvent } from "leaflet";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useGeoLocation from "../hooks/useGeoLocation";
 import { HotelDataType } from "../types/hotelsData";
 import { BookmarkDataType } from "../types/bookmarkData";
+import useUrlLocation from "../hooks/useUrlLocation";
 
 type MapPropsType = {
   markerLocations: HotelDataType[] | BookmarkDataType[];
@@ -19,13 +20,9 @@ type MapPropsType = {
 
 function Map({ markerLocations }: MapPropsType) {
   const [mapCenter, setMapCenter] = useState<LatLngExpression>([51, 1]);
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const lat = Number(searchParams.get("lat"));
-  const lng = Number(searchParams.get("lng"));
+  const [lat, lng] = useUrlLocation();
 
   const {
-    error,
     getPosition,
     isLoading: isLoadingGeoLocation,
     position: userPosition,
@@ -43,10 +40,15 @@ function Map({ markerLocations }: MapPropsType) {
   return (
     <div className="grow shrink bg-secondary-100 relative">
       <MapContainer
+        maxBounds={[
+          [-180, -90],
+          [180, 90],
+        ]}
         className="h-full"
         center={mapCenter}
-        zoom={6}
+        zoom={3}
         scrollWheelZoom={true}
+        minZoom={2}
       >
         <button
           onClick={getPosition}
