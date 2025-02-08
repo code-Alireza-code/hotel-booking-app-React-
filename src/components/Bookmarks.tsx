@@ -23,7 +23,11 @@ function Bookmarks() {
           >
             <ReactCountryFlag svg countryCode={bookmark.countryCode} />
             <strong className="grow ml-4">{bookmark.cityName}</strong>
-            <span>{bookmark.country}</span>
+            <span>
+              {bookmark?.country?.length > 14
+                ? `${bookmark.country.slice(0, 14)}...`
+                : bookmark.country}
+            </span>
           </div>
         </Link>
       ))}

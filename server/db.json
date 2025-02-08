@@ -49,7 +49,12 @@
       "host_neighbourhood": null,
       "host_listings_count": 1,
       "host_total_listings_count": 1,
-      "host_verifications": ["email", "phone", "facebook", "reviews"],
+      "host_verifications": [
+        "email",
+        "phone",
+        "facebook",
+        "reviews"
+      ],
       "street": "Amsterdam, Noord-Holland 1054, Netherlands",
       "neighbourhood": null,
       "neighbourhood_cleansed": "De Baarsjes - Oud-West",
@@ -114,7 +119,9 @@
         "lon": 2.35,
         "lat": 48.86
       },
-      "features": ["Host Has Profile Pic"]
+      "features": [
+        "Host Has Profile Pic"
+      ]
     },
     {
       "id": "9192415",
@@ -305,7 +312,11 @@
       "host_neighbourhood": "Oud-West",
       "host_listings_count": 3,
       "host_total_listings_count": 3,
-      "host_verifications": ["email", "phone", "reviews"],
+      "host_verifications": [
+        "email",
+        "phone",
+        "reviews"
+      ],
       "street": "Oud-West, Amsterdam, North Holland 1054, Netherlands",
       "neighbourhood": "Oud-West",
       "neighbourhood_cleansed": "De Baarsjes - Oud-West",
@@ -374,7 +385,10 @@
         "lon": 4.875639539930118,
         "lat": 52.36456756846072
       },
-      "features": ["Host Has Profile Pic", "Is Location Exact"]
+      "features": [
+        "Host Has Profile Pic",
+        "Is Location Exact"
+      ]
     },
     {
       "id": "13153299",
@@ -695,7 +709,10 @@
       "host_neighbourhood": null,
       "host_listings_count": 1,
       "host_total_listings_count": 1,
-      "host_verifications": ["email", "reviews"],
+      "host_verifications": [
+        "email",
+        "reviews"
+      ],
       "street": "Amsterdam, North Holland, Netherlands",
       "neighbourhood": null,
       "neighbourhood_cleansed": "De Baarsjes - Oud-West",
@@ -765,7 +782,9 @@
         "lon": 4.865594943841575,
         "lat": 52.36667871194905
       },
-      "features": ["Host Has Profile Pic"]
+      "features": [
+        "Host Has Profile Pic"
+      ]
     },
     {
       "id": "13465532",
@@ -947,7 +966,11 @@
       "host_neighbourhood": null,
       "host_listings_count": 0,
       "host_total_listings_count": 0,
-      "host_verifications": ["email", "phone", "reviews"],
+      "host_verifications": [
+        "email",
+        "phone",
+        "reviews"
+      ],
       "street": "Amsterdam, NH 1056, Netherlands",
       "neighbourhood": null,
       "neighbourhood_cleansed": "De Baarsjes - Oud-West",
@@ -1021,7 +1044,9 @@
         "lon": 4.853345068114508,
         "lat": 52.37080138742488
       },
-      "features": ["Host Has Profile Pic"]
+      "features": [
+        "Host Has Profile Pic"
+      ]
     },
     {
       "id": "7890890",
@@ -1072,7 +1097,12 @@
       "host_neighbourhood": "Oud-West",
       "host_listings_count": 1,
       "host_total_listings_count": 1,
-      "host_verifications": ["email", "phone", "reviews", "jumio"],
+      "host_verifications": [
+        "email",
+        "phone",
+        "reviews",
+        "jumio"
+      ],
       "street": "Oud-West, Amsterdam, Noord-Holland 1054, Netherlands",
       "neighbourhood": "Oud-West",
       "neighbourhood_cleansed": "De Baarsjes - Oud-West",
@@ -1206,7 +1236,12 @@
       "host_neighbourhood": "Oud-West",
       "host_listings_count": 2,
       "host_total_listings_count": 2,
-      "host_verifications": ["email", "phone", "reviews", "jumio"],
+      "host_verifications": [
+        "email",
+        "phone",
+        "reviews",
+        "jumio"
+      ],
       "street": "Oud-West, Amsterdam, Noord-Holland 1057, Netherlands",
       "neighbourhood": "Oud-West",
       "neighbourhood_cleansed": "De Baarsjes - Oud-West",
@@ -1333,6 +1368,96 @@
       "longitude": "67.78003711374224",
       "host_location": "Baba Kot Pakistan",
       "id": 8
+    },
+    {
+      "longitude": 2.399194495374215,
+      "cityName": "Paris",
+      "country": "France",
+      "countryCode": "FR",
+      "latitude": 48.87194147722911,
+      "id": 1739002544005,
+      "host_location": "Paris France"
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "countryCode": "FR",
+      "latitude": "48.87194147722911",
+      "longitude": "2.399194495374215",
+      "id": 1739002704975,
+      "host_location": "Paris France"
+    },
+    {
+      "cityName": "Valdemoro",
+      "country": "Spain",
+      "countryCode": "ES",
+      "latitude": "40.212440718286466",
+      "longitude": "-3.6672842350601313",
+      "id": 1739002740864,
+      "host_location": "Valdemoro Spain"
+    },
+    {
+      "cityName": "Alcanede",
+      "country": "Portugal",
+      "countryCode": "PT",
+      "latitude": "39.402244340292775",
+      "longitude": "-8.76892792124495",
+      "id": 1739002762802,
+      "host_location": "Alcanede Portugal"
+    },
+    {
+      "cityName": "Grong",
+      "country": "Norway",
+      "countryCode": "NO",
+      "latitude": "64.4348920430406",
+      "longitude": "12.15962135249302",
+      "id": 1739002775380,
+      "host_location": "Grong Norway"
+    },
+    {
+      "cityName": "Du Lainah",
+      "country": "Afghanistan",
+      "countryCode": "AF",
+      "latitude": "33.99802726234877",
+      "longitude": "65.4869247725977",
+      "id": 1739003365033,
+      "host_location": "Du Lainah Afghanistan"
+    },
+    {
+      "cityName": "Stratton",
+      "country": "United States of America (the)",
+      "countryCode": "US",
+      "latitude": "39.30029918615029",
+      "longitude": "-102.74967687493522",
+      "id": 1739003464300,
+      "host_location": "Stratton United States of America (the)"
+    },
+    {
+      "cityName": "South Slave Region",
+      "country": "Canada",
+      "countryCode": "CA",
+      "latitude": "61.98026726504404",
+      "longitude": "-102.43048761920807",
+      "id": 1739003474800,
+      "host_location": "South Slave Region Canada"
+    },
+    {
+      "cityName": "Bayinguoleng Menggu Zizhizhou",
+      "country": "China",
+      "countryCode": "CN",
+      "latitude": "36.527294814546245",
+      "longitude": "90.91246388125845",
+      "id": 1739005778713,
+      "host_location": "Bayinguoleng Menggu Zizhizhou China"
+    },
+    {
+      "cityName": "Satbaev",
+      "country": "Kazakhstan",
+      "countryCode": "KZ",
+      "latitude": "48.04870994288686",
+      "longitude": "67.52818841025707",
+      "id": 1739005795236,
+      "host_location": "Satbaev Kazakhstan"
     }
   ]
 }

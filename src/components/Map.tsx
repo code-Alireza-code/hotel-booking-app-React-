@@ -21,7 +21,6 @@ type MapPropsType = {
 function Map({ markerLocations }: MapPropsType) {
   const [mapCenter, setMapCenter] = useState<LatLngExpression>([51, 1]);
   const [lat, lng] = useUrlLocation();
-
   const {
     getPosition,
     isLoading: isLoadingGeoLocation,
@@ -41,8 +40,8 @@ function Map({ markerLocations }: MapPropsType) {
     <div className="grow shrink bg-secondary-100 relative">
       <MapContainer
         maxBounds={[
-          [-180, -90],
-          [180, 90],
+          [-90, -180],
+          [90, 180],
         ]}
         className="h-full"
         center={mapCenter}

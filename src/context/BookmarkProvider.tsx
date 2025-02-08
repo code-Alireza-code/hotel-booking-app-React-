@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import useFetch from "../hooks/useFetch";
 import { BookmarkDataType } from "../types/bookmarkData";
 import axios from "axios";
@@ -12,6 +18,17 @@ type BookmarkContextType = {
   isLoading: boolean;
   isLoadingCurrentBookmark: boolean;
   currentBookmark: BookmarkDataType | null;
+  createNewBookmark: (data: newBookmarkType) => Promise<void>;
+};
+
+type newBookmarkType = {
+  cityName: string;
+  country: string;
+  countryCode: string;
+  latitude: string;
+  longitude: string;
+  host_location: string;
+  id: number;
 };
 
 const BookmarkContext = createContext<BookmarkContextType | undefined>(
@@ -23,8 +40,27 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
     useState<null | BookmarkDataType>(null);
   const [isLoadingCurrentBookmark, setIsLoadingCurrentBookmark] =
     useState(false);
+  const [bookmarks, setBookmarks] = useState<BookmarkDataType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { data: bookmarks, isLoading } = useFetch<BookmarkDataType[]>(BASE_URL);
+  useEffect(() => {
+    async function getAllBookmarks() {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get(BASE_URL);
+        setBookmarks(data);
+      } catch (error) {
+        const err =
+          error instanceof Error
+            ? error.message
+            : "error while fetching bookmarks !";
+        toast.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    getAllBookmarks();
+  }, []);
 
   async function getSingleBookmark(id: string | number) {
     setCurrentBookmark(null);
@@ -42,6 +78,22 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
       setIsLoadingCurrentBookmark(false);
     }
   }
+
+  async function createNewBookmark(data: newBookmarkType) {
+    try {
+      await axios.post(BASE_URL, data);
+      setCurrentBookmark(data);
+      setBookmarks((prev) => [...prev, data]);
+      toast.success("bookmark added !");
+    } catch (error) {
+      const err =
+        error instanceof Error
+          ? error.message
+          : "error while adding new bookmark !";
+      toast.error(err);
+    }
+  }
+
   return (
     <BookmarkContext.Provider
       value={{
@@ -50,6 +102,7 @@ function BookmarkProvider({ children }: { children: ReactNode }) {
         isLoading,
         isLoadingCurrentBookmark,
         currentBookmark,
+        createNewBookmark,
       }}
     >
       {children}
