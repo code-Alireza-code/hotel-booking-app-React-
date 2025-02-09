@@ -10,6 +10,7 @@ import Bookmark from "./components/BookmarkLayout";
 import Bookmarks from "./components/Bookmarks";
 import SingleBookmark from "./components/SingleBookmark";
 import AddBookmark from "./components/AddBookmark";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<LocationList />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/hotels" element={<AppLayout />}>
           <Route index element={<Hotels />} />
           <Route path=":id" element={<SingleHotel />} />

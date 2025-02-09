@@ -57,6 +57,10 @@
     background-color: var(--color-secondary-400);
     margin: 0 1rem;
   }
+  a.active {
+    color: var(--color-primary-dark);
+    font-weight: bold;
+  }
 }
 
 @layer components {

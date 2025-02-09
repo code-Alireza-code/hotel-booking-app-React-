@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
-import { MdLocationPin } from "react-icons/md";
+import { MdBookmark, MdExitToApp, MdLocationPin } from "react-icons/md";
 import useOutsideClick from "../hooks/useOutsideClick";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
@@ -8,9 +8,11 @@ import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import {
   createSearchParams,
+  NavLink,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 type OptionsType = {
   adult: number;
@@ -89,21 +91,35 @@ function Header() {
 
   return (
     <div className="flex justify-center items-center gap-4">
-      <div className=" flex w-full  justify-between items-center gap-4 border border-[#ebe9e9] rounded-3xl p-4">
-        <div className="flex items-center relative">
+      <div className=" flex w-full justify-around items-center gap-2 border border-[#ebe9e9] rounded-3xl p-4">
+        <NavLink
+          className="font-semibold flex items-center gap-x-2"
+          to="/bookmark"
+        >
+          <span>Bookmarks</span>
+          <MdBookmark />
+        </NavLink>
+        <span className="separator" />
+        <div className="flex grow items-center relative">
           <MdLocationPin className="text-rose-500 w-6 h-6 inline-block" />
           <input
             type="text"
             placeholder="where to go...?"
-            className=" px-3 py-2 outline-none"
+            className=" px-3 py-2 outline-none w-full"
             name="destination"
             id="destination"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
           />
-          <span className="separator" />
+          <button
+            onClick={handleSearch}
+            className="flex items-center justify-center bg-primary-light/10 text-primary-light p-2 rounded-2xl"
+          >
+            <HiSearch className="w-6 h-6 " />
+          </button>
         </div>
-        <div className="flex items-center relative">
+        <span className="separator" />
+        <div className="flex  items-center  relative">
           <HiCalendar className="w-6 h-6 inline-block text-primary-dark" />
           <div
             className="ml-2 text-sm cursor-pointer"
@@ -132,8 +148,8 @@ function Header() {
               />
             </div>
           )}
-          <span className="separator" />
         </div>
+        <span className="separator" />
         <div className="flex items-center relative">
           <div
             data-id="optionDropDown"
@@ -150,16 +166,9 @@ function Header() {
               closeOptions={() => setOpenOptions(false)}
             />
           )}
-          <span className="separator" />
         </div>
-        <div className="flex items-center relative">
-          <button
-            onClick={handleSearch}
-            className="flex items-center justify-center bg-primary-light text-white p-2 rounded-2xl"
-          >
-            <HiSearch className="w-6 h-6 " />
-          </button>
-        </div>
+        <span className="separator" />
+        <User />
       </div>
     </div>
   );
@@ -227,6 +236,27 @@ function GuestOptionItem({
           <HiPlus />
         </button>
       </div>
+    </div>
+  );
+}
+
+function User() {
+  const { isAuthenticated, user, logout } = useAuth();
+
+  return (
+    <div className="w-18 mr-2">
+      {isAuthenticated ? (
+        <div className="flex items-center justify-center gap-x-1 -ml-3">
+          <span className="font-semibold">{user?.name || "user"}</span>
+          <button onClick={logout}>
+            <MdExitToApp className="w-5 h-5" />
+          </button>
+        </div>
+      ) : (
+        <NavLink className="font-bold" to="/login">
+          login
+        </NavLink>
+      )}
     </div>
   );
 }
