@@ -1395,6 +1395,24 @@
       "longitude": "-3.7630510335143073",
       "id": 1739036850459,
       "host_location": "Madrid Spain"
+    },
+    {
+      "cityName": "Houston",
+      "country": "United States of America (the)",
+      "countryCode": "US",
+      "latitude": "29.864465259258",
+      "longitude": "-95.39185911605458",
+      "id": 1739083555086,
+      "host_location": "Houston United States of America (the)"
+    },
+    {
+      "cityName": "Las Vegas",
+      "country": "United States of America (the)",
+      "countryCode": "US",
+      "latitude": "36.15118243124803",
+      "longitude": "-115.11308795197017",
+      "id": 1739083571429,
+      "host_location": "Las Vegas United States of America (the)"
     }
   ]
 }

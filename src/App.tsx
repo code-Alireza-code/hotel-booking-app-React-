@@ -6,11 +6,12 @@ import { Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Hotels from "./components/Hotels";
 import SingleHotel from "./components/SingleHotel";
-import Bookmark from "./components/BookmarkLayout";
 import Bookmarks from "./components/Bookmarks";
 import SingleBookmark from "./components/SingleBookmark";
 import AddBookmark from "./components/AddBookmark";
 import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import BookmarkLayout from "./components/BookmarkLayout";
 
 function App() {
   return (
@@ -24,7 +25,14 @@ function App() {
           <Route index element={<Hotels />} />
           <Route path=":id" element={<SingleHotel />} />
         </Route>
-        <Route path="/bookmark" element={<Bookmark />}>
+        <Route
+          path="/bookmark"
+          element={
+            <ProtectedRoute>
+              <BookmarkLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Bookmarks />} />
           <Route path="add" element={<AddBookmark />} />
           <Route path=":id" element={<SingleBookmark />} />
