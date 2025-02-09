@@ -1,7 +1,7 @@
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import useUrlLocation from "../hooks/useUrlLocation";
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import ReactCountryFlag from "react-country-flag";
@@ -10,8 +10,6 @@ import { useBookmarks } from "../context/BookmarkProvider";
 
 const BASE_GEOCODING_URL =
   "https://us1.api-bdc.net/data/reverse-geocode-client";
-
-const BASE_URL = "http://localhost:5000/bookmarks";
 
 type FormDataType = {
   cityName: string;
@@ -40,7 +38,7 @@ function AddBookmark() {
 
     const newBookmark = {
       ...formData,
-      latitude: String(lat), 
+      latitude: String(lat),
       longitude: String(lng),
       id: Date.now(),
       host_location: formData.cityName + " " + formData.country,

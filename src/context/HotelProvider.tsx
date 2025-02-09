@@ -20,7 +20,7 @@ const HotelContext = createContext<ContextType | undefined>(undefined);
 function HotelProvider({ children }: { children: ReactNode }) {
   const [currentHotel, setCurrentHotel] = useState<null | HotelDataType>(null);
   const [isLoadingCurrentHotel, setIsLoadingCurrentHotel] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const destination = (searchParams.get("destination") as string) || "";
   const room = JSON.parse(searchParams.get("options") as string)?.room || "";
   const { data: hotels, isLoading } = useFetch<HotelDataType[]>(

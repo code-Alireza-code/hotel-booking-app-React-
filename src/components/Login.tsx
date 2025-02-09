@@ -8,7 +8,7 @@ function Login() {
     email: "user@gmail.com",
     password: "12345",
   });
-  const { login, isAuthenticated, user } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {

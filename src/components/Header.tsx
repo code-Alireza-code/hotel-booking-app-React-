@@ -43,7 +43,7 @@ const optionItemData = [
 ];
 
 function Header() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [destination, setDestination] = useState(
     searchParams.get("destination") || ""
   );
