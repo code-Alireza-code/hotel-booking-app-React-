@@ -9,7 +9,7 @@ function LocationList() {
   if (isLoading) return <p className="mt-4">loading location data ....</p>;
   return (
     <div>
-      <h2 className="mb-4">Nearby Locations</h2>
+      <h2 className="mb-4 font-bold my-4">Nearby Locations</h2>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8 ">
         {data.map((item) => (
           <div key={item.id}>

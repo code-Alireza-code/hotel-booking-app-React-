@@ -13,6 +13,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import { FaHotel } from "react-icons/fa";
 
 type OptionsType = {
   adult: number;
@@ -92,6 +93,13 @@ function Header() {
   return (
     <div className="flex justify-center items-center gap-4">
       <div className=" flex w-full justify-around items-center gap-2 border border-[#ebe9e9] rounded-3xl p-4">
+        <NavLink to="/">
+          <div className="flex grow items-center text-nowrap gap-x-2">
+            <span className="capitalize font-bold">hotel booking app</span>
+            <FaHotel />
+          </div>
+        </NavLink>
+        <span className="separator" />
         <NavLink
           className="font-semibold flex items-center gap-x-2"
           to="/bookmark"
@@ -119,12 +127,12 @@ function Header() {
           </button>
         </div>
         <span className="separator" />
-        <div className="flex  items-center  relative">
+        <div className="flex items-center relative text-nowrap">
           <HiCalendar className="w-6 h-6 inline-block text-primary-dark" />
           <div
             className="ml-2 text-sm cursor-pointer"
             data-id="datePicker"
-            onClick={() => setOpenDate(true)}
+            onClick={() => setOpenDate((prev) => !prev)}
           >
             {`${format(date.startDate, "MM/dd/yyyy")} to ${format(
               date.endDate,
@@ -134,7 +142,7 @@ function Header() {
           {openDate && (
             <div ref={ref as React.RefObject<HTMLDivElement>}>
               <DateRange
-                className="absolute z-20 top-10 right-5"
+                className="absolute z-[1000] top-10 right-5"
                 ranges={[date]}
                 onChange={(item) =>
                   setDate({
@@ -150,11 +158,11 @@ function Header() {
           )}
         </div>
         <span className="separator" />
-        <div className="flex items-center relative">
+        <div className="flex items-center relative text-nowrap">
           <div
             data-id="optionDropDown"
             className="cursor-pointer"
-            onClick={() => setOpenOptions(true)}
+            onClick={() => setOpenOptions((prev) => !prev)}
           >
             {options.adult} adult &bull; {options.children} children &bull;
             {options.room} room
@@ -189,7 +197,7 @@ function GuestOptionList({
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
-      className="bg-white shadow-2xs space-y-3 p-2 shadow-[#efefef] rounded-xl border border-secondary-200 absolute top-8 w-56 z-50"
+      className="bg-white shadow-2xs space-y-3 p-2 shadow-[#efefef] rounded-xl border border-secondary-200 absolute top-8 w-56 z-[1000]"
     >
       {optionItemData.map((item) => (
         <GuestOptionItem

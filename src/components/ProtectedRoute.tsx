@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import { ReactNode, useEffect } from "react";
 import toast from "react-hot-toast";
@@ -10,11 +10,21 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      toast("please login first !", {
-        className: "font-bold !text-primary-light/80",
-        icon: <MdInfoOutline className="w-5 h-5" />,
-      });
-      navigate("/login");
+      toast(
+        <div>
+          please
+          <Link to="/login" className="underline text-blue-600">
+            &nbsp;login&nbsp;
+          </Link>
+          first !
+        </div>,
+        {
+          className: "font-bold ",
+          icon: <MdInfoOutline className="w-5 h-5" />,
+          duration: 5000,
+        }
+      );
+      navigate("/");
     }
   }, [isAuthenticated, navigate]);
 
